@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Свадебное приглашение</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.ibb.co/nNrs0V0C/image.png" type="image/png" />
+  <link rel="apple-touch-icon" href="https://i.ibb.co/nNrs0V0C/image.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Приглашение на свадьбу" />
+  <meta property="og:description" content="Мы будем рады разделить с вами наш особенный день!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://artemkuripko.github.io/test-Svadba-noumber123764/" />
+  <meta property="og:image" content="https://i.ibb.co/nNrs0V0C/image.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f9f7 100%);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Header с анимированными сердечками */
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, #FFFFFF 0%, #AACCBC 100%);
+      padding: 40px 20px;
+      margin-bottom: 32px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(138, 154, 91, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: '💕';
+      position: absolute;
+      font-size: 80px;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    header::before {
+      top: 20px;
+      left: 20px;
+    }
+
+    header::after {
+      bottom: 20px;
+      right: 20px;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 5vw, 32px);
+      font-weight: 600;
+      color: #8a9a5b;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: clamp(14px, 3vw, 16px);
+      color: #888;
+      font-weight: 500;
+    }
+
+    /* Слайдер */
+    .slider-container {
+      margin-bottom: 32px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      position: relative;
+      background: #fff;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 66.67%; /* 3:2 aspect ratio */
+      overflow: hidden;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(138, 154, 91, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .slider-dot.active {
+      background: #fff;
+      transform: scale(1.2);
+      border-color: #8a9a5b;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      color: #8a9a5b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider-arrow:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow.prev { left: 12px; }
+    .slider-arrow.next { right: 12px; }
+
+    /* Блоки с текстом и фото */
+    .block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .block img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .text {
+      font-size: clamp(14px, 3.5vw, 16px);
+      color: #333;
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    .text strong {
+      color: #8a9a5b;
+      font-weight: 600;
+    }
+
+    /* Timeline расписания */
+    .schedule-container {
+      margin: 32px 0;
+      position: relative;
+    }
+
+    .schedule-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 5vw, 28px);
+      color: #8a9a5b;
+      margin-bottom: 24px;
+    }
+
+    .schedule-box {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .schedule-box::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #8a9a5b, #b5ead7);
+    }
+
+    .schedule-item {
+      position: relative;
+      padding: 20px 20px 20px 56px;
+      margin-bottom: 16px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(138, 154, 91, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .schedule-item:hover {
+      transform: translateX(4px);
+    }
+
+    .schedule-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 28px;
+      width: 16px;
+      height: 16px;
+      background: #8a9a5b;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px #8a9a5b;
+    }
+
+    .schedule-item strong {
+      color: #8a9a5b;
+      display: block;
+      font-size: clamp(16px, 4vw, 18px);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .schedule-item .time {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .schedule-item .address {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Кнопки одинаковой ширины */
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px auto;
+      max-width: 600px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 8px;
+      background: linear-gradient(135deg, #8a9a5b, #b5ead7);
+      color: #fff;
+      border-radius: 10px;
+      font-size: clamp(11px, 2.5vw, 13px);
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(138, 154, 91, 0.3);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-height: 48px;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #b5ead7, #8a9a5b);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(138, 154, 91, 0.4);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    /* Countdown */
+    .countdown {
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #fff 0%, #f5f9f7 100%);
+      border-radius: 16px;
+      margin: 32px 0;
+      box-shadow: 0 4px 16px rgba(138, 154, 91, 0.15);
+    }
+
+    .countdown-title {
+      font-size: clamp(14px, 3vw, 16px);
+      color: #888;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      min-width: 70px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .countdown-value {
+      font-size: clamp(24px, 6vw, 32px);
+      font-weight: 700;
+      color: #8a9a5b;
+      display: block;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Dress code */
+    .dresscode {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      margin: 32px 0;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .dresscode h3 {
+      font-family: 'Playfair Display', serif;
+      color: #8a9a5b;
+      font-size: clamp(18px, 4vw, 24px);
+      margin-bottom: 16px;
+    }
+
+    .dresscode p {
+      color: #555;
+    }
+
+    .dresscode-colors {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .color-palette {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .color-palette:hover {
+      transform: scale(1.1);
+    }
+
+    /* RSVP форма */
+    .rsvp-section {
+      background: linear-gradient(135deg, #fff 0%, #f5f9f7 100%);
+      padding: 32px 20px;
+      border-radius: 20px;
+      margin: 32px 0;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(138, 154, 91, 0.15);
+    }
+
+    .rsvp-section h3 {
+      font-family: 'Playfair Display', serif;
+      color: #8a9a5b;
+      font-size: clamp(20px, 5vw, 28px);
+      margin-bottom: 8px;
+    }
+
+    .rsvp-section p {
+      color: #666;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .rsvp-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .rsvp-btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      min-width: 140px;
+    }
+
+    .rsvp-btn.yes {
+      background: linear-gradient(135deg, #8a9a5b, #b5ead7);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(138, 154, 91, 0.3);
+    }
+
+    .rsvp-btn.no {
+      background: #fff;
+      color: #8a9a5b;
+      border-color: #8a9a5b;
+    }
+
+    .rsvp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    footer .hearts {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .container {
+        padding: 12px;
+      }
+
+      header {
+        padding: 32px 16px;
+        margin-bottom: 24px;
+      }
+
+      .block {
+        padding: 20px;
+        margin-bottom: 24px;
+      }
+
+      .block img {
+        height: 200px;
+      }
+
+      .schedule-item {
+        padding: 16px 16px 16px 48px;
+      }
+
+      .schedule-item::before {
+        left: 8px;
+        width: 12px;
+        height: 12px;
+      }
+
+      .schedule-box::before {
+        left: 14px;
+      }
+
+      .button-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 0 8px;
+      }
+
+      .button {
+        padding: 16px 12px;
+        font-size: 14px;
+      }
+
+      .countdown-timer {
+        gap: 8px;
+      }
+
+      .countdown-item {
+        min-width: 60px;
+        padding: 10px 12px;
+      }
+
+      .slider-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .slider-arrow.prev { left: 8px; }
+      .slider-arrow.next { right: 8px; }
+
+      .dresscode-colors {
+        gap: 8px;
+      }
+
+      .color-palette {
+        width: 40px;
+        height: 40px;
+      }
+
+      .rsvp-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .rsvp-btn {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider-controls {
+        bottom: 12px;
+      }
+
+      .slider-dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .countdown-item {
+        min-width: 55px;
+        padding: 8px 10px;
+      }
+
+      .countdown-value {
+        font-size: 22px;
+      }
+
+      .countdown-label {
+        font-size: 10px;
+      }
+    }
+
+    /* Desktop стили */
+    @media (min-width: 769px) {
+      .block {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px;
+      }
+
+      .block:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .block img,
+      .text {
+        width: 48%;
+      }
+
+      .block img {
+        height: 320px;
+      }
+
+      .text {
+        text-align: left;
+        font-size: 16px;
+      }
+
+      .button-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Музыкальный плеер (опционально) */
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s;
+      border: 2px solid #8a9a5b;
+    }
+
+    .music-player:hover {
+      transform: scale(1.1);
+    }
+
+    .music-player.playing {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(138, 154, 91, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(138, 154, 91, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌿 Приглашаем тебя на <br> нашу свадьбу 🌿</h1>
+      <p class="subtitle">27 июня 2026 • Томск</p>
+    </header>
+
+    <!-- Слайдер с фото -->
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slide">
+            <img src="https://media.istockphoto.com/id/2090025382/ru/фото/мужчина-нежно-держит-невесту-за-руку-с-красивым-золотым-обручальным-кольцом-увеличенное.jpg?s=612x612&w=0&k=20&c=irTqOP_CxnuEDvSuZTFws2XzLDX5If8KUxWNIB4EDw4=" alt="Наша история 1" />
+          </div>
+          <div class="slide">
+            <img src="https://avatars.mds.yandex.net/i?id=b69f5c954986e80cbb16bedc802ea5f9_l-5452187-images-thumbs&n=13" alt="Наша история 2" />
+          </div>
+          <div class="slide">
+            <img src="https://img.freepik.com/premium-photo/wedding-session-cappadocia-turkey-with-hot-air-balloons_152625-2431.jpg?semt=ais_hybrid" alt="Наша история 3" />
+          </div>
+          
+           <div class="slide">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIlZbl9dTAoj4MkDL9b_BQR4-NgZePqJ_2mg&s" alt="Наша история " />
+          </div>
+          <div class="slide">
+            <img src="https://media.istockphoto.com/id/2090025382/ru/фото/мужчина-нежно-держит-невесту-за-руку-с-красивым-золотым-обручальным-кольцом-увеличенное.jpg?s=612x612&w=0&k=20&c=irTqOP_CxnuEDvSuZTFws2XzLDX5If8KUxWNIB4EDw4=" alt="Наша история " />
+          </div>
+          <div class="slide">
+            <img src="https://avatars.mds.yandex.net/i?id=b69f5c954986e80cbb16bedc802ea5f9_l-5452187-images-thumbs&n=13" alt="Наша история 2" />
+          </div>
+          <div class="slide">
+            <img src="https://img.freepik.com/premium-photo/wedding-session-cappadocia-turkey-with-hot-air-balloons_152625-2431.jpg?semt=ais_hybrid" alt="Наша история 3" />
+          </div>
+        </div>
+        <button class="slider-arrow prev" onclick="changeSlide(-1)">‹</button>
+        <button class="slider-arrow next" onclick="changeSlide(1)">›</button>
+        <div class="slider-controls" id="sliderDots"></div>
+      </div>
+    </div>
+
+
+    <!-- Расписание -->
+    <div class="schedule-container">
+      <h2 class="schedule-title">🎂 В этот день вас ждёт:</h2>
+      <div class="schedule-box">
+        <div class="schedule-item">
+          <strong>📍 1. Дворец бракосочетания</strong>
+          <span class="time">⏰ 12:45</span>
+          <span class="address">г. Томск, ул. Ленина, 83</span>
+        </div>
+        <div class="schedule-item">
+          <strong>📍 2. Фотостудия</strong>
+          <span class="time">⏰ 14:00 – 15:30</span>
+          <span class="address">г. Томск, ул. Красноармейская, 101А</span>
+        </div>
+        <div class="schedule-item">
+          <strong>📍 3. Уютная беседка</strong>
+          <span class="time">⏰ 16:00</span>
+          <span class="address">г. Томск, ул. Сплавная, 1Д</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Кнопки с картами (одинаковой ширины) -->
+    <div class="button-container">
+      <a class="button" href="https://yandex.ru/maps/org/dvorets_brakosochetaniy_goroda_tomska/1007167822/?ll=84.950371%2C56.477815&z=16" target="_blank">💍️ ЗАГС</a>
+      <a class="button" href="https://yandex.ru/maps/org/one_room/204288001318/?ll=84.965899%2C56.462933&z=18.72" target="_blank">📸 Студия</a>
+      <a class="button" href="https://yandex.ru/maps/67/tomsk/house/splavnaya_ulitsa_1d/bE0YfwZnS0QDQFtsfXh4dnRqYA==/?ll=84.917214%2C56.497894&z=16.36" target="_blank">🥂 Беседка</a>
+    </div>
+
+    <!-- Обратный отсчёт -->
+    <div class="countdown" id="countdown">
+      <div class="countdown-title">⏳ До начала праздника:</div>
+      <div class="countdown-timer" id="countdownTimer"></div>
+    </div>
+
+    <!-- Dress code -->
+    <div class="dresscode">
+      <h3>👔 Дресс-код</h3>
+      <p>Будем рады, если вы поддержите цветовую гамму нашей свадьбы в своих образах:</p>
+      <div class="dresscode-colors">
+        <div class="color-palette" style="background: #000000; border: 1px solid #ddd;" title="Чёрный"></div>
+        <div class="color-palette" style="background: #172F47;" title="Тёмно синий"></div>
+        <div class="color-palette" style="background: #274569;" title="Синий"></div>
+        <div class="color-palette" style="background: #D4B785;" title="Бежевый"></div>
+        <div class="color-palette" style="background: #585858;" title="Тёмно серый"></div>
+        <div class="color-palette" style="background: #D4D4D4;" title="Светло серый"></div>
+        <div class="color-palette" style="background: #FFFFFF; border: 1px solid #ddd;" title="Белый"></div>
+      </div>
+    </div> 
+
+    <!-- RSVP -->
+    <div class="rsvp-section">
+      <h3>💌 Подтвердите присутствие</h3>
+      <p>Пожалуйста, сообщите нам о своём решении до 15 июня 2026</p>
+      <div class="rsvp-buttons">
+        <a href="https://vk.com/daagabe" class="rsvp-btn yes" target="_blank">✓ Да!</a>
+        <a href="https://vk.com/daagabe" class="rsvp-btn no" target="_blank">✗ Нет...</a>
+      </div>
+    </div>
+
+    <footer>
+      <!-- <div class="hearts">💕  💕  💕</div> -->
+      <p>С любовью, Артём и Ирина</p>
+      <p style="margin-top: 8px; font-size: 12px;">27 июня 2026 • Томск</p>
+    </footer>
+  </div>
+
+  <!-- Музыкальный плеер (опционально) -->
+  <div class="music-player" id="musicPlayer" onclick="toggleMusic()">❤️</div>
+
+<script>
+  // Слайдер
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const track = document.getElementById('sliderTrack');
+  const dotsContainer = document.getElementById('sliderDots');
+
+  // Создаём точки
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function changeSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+  }
+
+  // Автопрокрутка
+  setInterval(() => changeSlide(1), 5000);
+
+  // Анимация блоков при скролле
+  const blocks = document.querySelectorAll('.block');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  blocks.forEach(block => observer.observe(block));
+
+  // Обратный отсчёт
+  const weddingDate = new Date('2026-06-27T12:30:00+07:00');
+  const countdownTimer = document.getElementById('countdownTimer');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      countdownTimer.innerHTML = '<div style="font-size: 24px; color: #8a9a5b; font-weight: 600;">🎉 Праздник уже начался! Ждём вас!</div>';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownTimer.innerHTML = `
+      <div class="countdown-item">
+        <span class="countdown-value">${days}</span>
+        <div class="countdown-label">дней</div>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value">${hours}</span>
+        <div class="countdown-label">часов</div>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value">${minutes}</span>
+        <div class="countdown-label">минут</div>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value">${seconds}</span>
+        <div class="countdown-label">секунд</div>
+      </div>
+    `;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // 🎵 Музыкальный плеер
+  let isPlaying = false;
+  const audio = new Audio('https://cdn.pixabay.com/audio/2023/09/20/audio_167467c8f8.mp3'); // Wedding Piano — Ivan_Luzan (Pixabay, royalty-free)
+
+  function toggleMusic() {
+    const player = document.getElementById('musicPlayer');
+    isPlaying = !isPlaying;
+    player.classList.toggle('playing', isPlaying);
+    player.textContent = isPlaying ? '💚' : '❤️';
+    
+    if (isPlaying) {
+      audio.volume = 0,4; // тихий фоновый уровень
+      audio.play().catch(e => {
+        console.log('Автовоспроизведение заблокировано:', e);
+        alert('Очень сильно ждём вашего ответа! 😊');
+        isPlaying = false;
+        player.classList.remove('playing');
+        player.textContent = '❤️';
+      });
+    } else {
+      audio.pause();
+    }
+  }
+
+  // Остановка музыки при уходе со страницы (экономия трафика)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && isPlaying) {
+      audio.pause();
+    }
+  });
+
+  // Touch swipe для слайдера на мобильных
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  track.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) changeSlide(1);
+    if (touchEndX - touchStartX > 50) changeSlide(-1);
+  });
+</script>
+</body>
+</html>
